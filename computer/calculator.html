@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>计算器</title>
+		<link rel="stylesheet" href="css/font-awesome.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/icon.css" />
+	</head>
+	<body>
+		<h1 class="h1">实用计算器</h1>
+		<div class="bg">
+			<section class="bg2">
+				<input type="text" placeholder="请点击输入数字" calss="text" name="" value="" onfocus=this.blur() id="inport" readonly="true" />
+				<div class="header">
+					<div class="input2">
+						<input type="text" placeholder="记忆 辅助显示" id="inport2" onfocus=this.blur()>
+					</div>
+					<div class="radius">
+						<div class="two">
+							<label for="jinzhi2">
+						    <i>二进制</i><input type="radio" value="1" id="jinzhi2" name="jinzhichange" />
+					    	</label>
+						</div>
+						<div class="eight">
+							<label for="jinzhi8">
+							<i>八进制</i><input type="radio" value="1" id="jinzhi8" name="jinzhichange" />
+							</label>
+						</div>
+						<div class="ten">
+							<label for="jinzhi10">
+							<i>十进制</i><input type="radio" value="1" id="jinzhi10" name="jinzhichange" />
+							</label>
+						</div>
+						<div class="sixteen">
+							<label for="jinzhi16">
+							<i>十六进制</i><input type="radio"name="complete"complete="sin" value="1" id="jinzhi16" name="jinzhichange" />
+							</label>
+						</div>
+					</div>
+					<div class="System-time">
+						<i class="timerabc" value="1" class="timerabc"></i>
+						<i class="timerabc" value="2" class="timerabc"></i>
+						<i class="timerabc" value="3" class="timerabc"></i>
+					</div>
+					<div class="openoroff">
+						<!-- .slideThree -->
+						<div class="slideThree" id="openoff">
+							<input type="checkbox" value="None" id="slideThree" name="check" checked />
+							<label for="slideThree" id="switch"></label>
+						</div>
+						<!-- end .slideThree -->
+					</div>
+				</div>
+				<div class="footer">
+					<section class="sectionyunsaun-left">
+						<div class="leftdiv_1">
+							<button value="zuokuohao" name="complete" complete="(">（</i>
+						    <button value="youkuohao" name="complete" complete=")">）</i>
+						    <button class="delzero"   name="complete" complete="CE">CE</button>
+							<button name="complete" complete="←">←</button>
+							<button class="delzero" name="complete" complete="+/-">+/-</button>
+							<button value="qincun" name="complete" complete="C">C</button>
+						</div>
+						<div class="leftdiv_2">
+							<div class="leftdiv_2-left">
+								<button class="numbe" name="complete" complete="1">1</button>
+								<button class="number" name="complete" complete="2">2</button>
+								<button class="number" name="complete" complete="3">3</button>
+								<button class="number" name="complete" complete="4">4</button>
+								<button class="number" name="complete" complete="5">5</button>
+								<button class="number" name="complete" complete="6">6</button>
+								<button class="number" name="complete" complete="7">7</button>
+								<button class="number" name="complete" complete="8">8</button>
+								<button class="number" name="complete" complete="9">9</button>
+								<button class="number" name="complete" complete="0">0</button>
+								<button class="number" name="complete" complete=".">.</button>
+							</div>
+							<div class="leftdiv2-right">
+								<button value="baifen" name="complete" complete="%">%</button>
+								<button valuee="＋" name="complete" complete="+">+</button>
+								<button valuee="－" name="complete" complete="-">-</button>
+								<button valuee="×" name="complete" complete="×">X</button>
+								<button valuee="÷" name="complete" complete="÷">/</button>
+								<button valuee="＝" name="complete" complete="=">=</button>
+							</div>
+						</div>
+						<div class="leftdiv_3">
+							<button class="jia" name="complete" complete="A">A</button>
+							<button value="baifen" name="complete" complete="B">B</button>
+							<button valuee="＋" name="complete" complete="C">C</button>
+							<button valuee="－" name="complete" complete="D">D</button>
+							<button valuee="×" name="complete" complete="E">E</button>
+							<button valuee="÷" name="complete" complete="F">F</button>
+						</div>
+					</section>
+					<section class="sectionyunsaun-right">
+						<section class="complete2" id="complete2">
+							<button name="complete" complete="sin">sin</button>
+							<button name="complete" complete="cos">cos</button>
+							<button name="complete" complete="asin">asin</button>
+							<button name="complete" complete="acos">acos</button>
+							<button name="complete" complete="2sin">2sin</button>
+							<button name="complete" complete="2cos">2cos</button>
+							<button name="complete" complete="tan">tan</button>
+							<button name="complete" complete="atan">atan</button>
+							<button name="complete" complete="max">max</button>
+							<button name="complete" complete="min">min</button>
+						</section>
+						<section class="complete5" id="complete5">
+							<button name="complete" complete="lg">lg</button>
+							<button name="complete" complete="n">n次方</button>
+							<button name="complete" complete="X2">X<sup>∧</sup>3</button>
+							<button name="complete" complete="X3">X<sup>∧</sup>2</button>
+							<button name="complete" complete="X!">x！</button>
+							<button name="complete" complete="1/x">1/x</button>
+							<button name="complete" complete="X/22">X<sup>2</sup></button>
+							<button name="complete" complete="X/33">X<sup>3</sup></button>
+							<button name="complete" complete="|x|">|x|</button>
+							<button name="complete" complete="{">{</button>
+							<button name="complete" complete="}">}</button>
+						</section>
+						<section class="complete6" id="complete6">
+							<button name="complete" complete="π">π</button>
+							<button name="complete" complete="E">E</button>
+							<button name="complete" complete="ln">ln</button>
+							<button name="complete" complete="d.ms">d.ms</button>
+							<button name="complete" complete="↑">↑</button>
+							<button name="complete" complete="↓">↓</button>
+						</section>
+					</section>
+				</div>
+		</div>
+		<script type="text/javascript" src="js/calculator.js"></script>
+	</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>粒子电子表</title>
+		<style type="text/css">
+			#canvas {
+				background: #000000;
+				display: block;
+				margin: 0 auto;
+			}
+			
+			body {
+				background: #999;
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body onload="getTime()">
+		<canvas id="canvas"></canvas>
+		<script src="js/data.js"></script>
+		<script language="JavaScript">
+			var canvas = document.getElementById('canvas');
+			/* getContext操控画布。
+			 */
+
+			var cxt = canvas.getContext("2d");
+			canvas.width = 700;
+			canvas.height = 100;
+			var R = canvas.height / 20 - 1;
+			//console.log(num);
+			console.log(digit[1]);
+
+			function drawDigit(index, num) {
+				for(var i = 0; i < digit[num].length; i++) {
+					for(var j = 0; j < digit[num][i].length; j++) {
+						if(digit[num][i][j] == 1) {
+							cxt.fillStyle = "#fff";
+							cxt.beginPath();
+							cxt.arc(14 * (R + 2) * index + j * 2 * (R + 1) + (R + 1), i * 2 * (R + 1) + (R + 1), R, 0, 2 * Math.PI);
+							cxt.closePath();
+							cxt.fill();
+						}
+					}
+				}
+			}
+
+			function getTime() {
+				var data = new Date();
+				var temp = /(\d)(\d):(\d)(\d):(\d)(\d)/.exec(new Date());
+				console.log(temp);
+				var data = [];
+				data.push(temp[1], temp[2], 10, temp[3], temp[4], 10, temp[5], temp[6]);
+				canvas.height = 100;
+				for(var i = 0; i < data.length; i++) {
+					drawDigit(i, data[i]);
+					//重新设置画布的高，清空画布效果。
+				}
+			}
+			getTime();
+			//ctx.clearInterval(timer);
+			clearInterval(timer);
+			var timer = setInterval(function() {
+				getTime();
+			}, 500);
+		</script>
+	</body>
+
+</html>

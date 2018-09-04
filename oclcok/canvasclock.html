@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>小恒时钟</title>
+    <style>
+        div{
+            margin: 0 auto;
+            width: 500px;
+        }
+        canvas{
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div ><canvas width="500" height="500" id="cas"></canvas></div>
+<script>
+    var canvas=document.getElementById("cas");
+    var cvs=canvas.getContext('2d');
+    var width=canvas.width;
+    var height=canvas.height;
+
+    setInterval(function(){
+        //每次都要清除画布
+        cvs.rect(0,0,width,height)
+        //基本结构每次重新画
+        //画最外面的圆
+        cvs.save()
+        cvs.beginPath()
+        cvs.moveTo(width/2,0);
+        cvs.strokeStyle="blue";
+        cvs.lineWidth=2;
+        cvs.arc(width/2,height/2,width/2,-Math.PI/2,Math.PI*3/2);
+        cvs.closePath()
+        cvs.stroke();
+        //每一格分针所占的角度
+       cvs.restore();
+        var deg=2*Math.PI/60
+        for(var i=0;i<60;i++){
+            cvs.beginPath();
+            cvs.lineWidth=1;
+            cvs.moveTo(width/2,height/2) ;
+            cvs.lineTo(width/2+width/2*Math.sin(i*deg),height/2-height/2*Math.cos(i*deg))
+            cvs.closePath();
+            cvs.stroke()
+        }
+        cvs.beginPath()
+        cvs.moveTo(width/2,height/2);
+        cvs.fillStyle="white";
+        cvs.arc(width/2,height/2,width/2*19/20,-Math.PI/2,Math.PI*3/2),
+                cvs.closePath()
+                cvs.fill();
+
+        var deg1=2*Math.PI/12;
+        //绘制时针刻度
+        for(var j=0;j<12;j++){
+            cvs.beginPath();
+            cvs.moveTo(width/2,height/2);
+            cvs.lineTo(width/2+width/2*Math.sin(j*deg1),height/2-height/2*Math.cos(j*deg1));
+            cvs.closePath();
+            cvs.stroke()
+        }
+        cvs.beginPath()
+        cvs.moveTo(width/2,height/2);
+        cvs.fillStyle="white";
+
+        cvs.arc(width/2,height/2,width/2*17/20,-Math.PI/2,Math.PI*3/2);
+                cvs.closePath()
+                cvs.fill();
+         date=new Date();
+         hour=date.getHours();
+         minute=date.getMinutes();
+        second=date.getSeconds();
+
+      /*  console.log(hour-12);
+        console.log(second);
+        console.log(minute);*/
+       //让秒针动起来
+        cvs.save()
+        cvs.beginPath();
+        cvs.strokeStyle="red"
+        //秒针的角度
+        console.log(second);
+        var deg2=second/60*2*Math.PI;
+        console.log(deg2);
+        cvs.moveTo(width/2,height/2);
+        cvs.lineWidth=5;
+        //定义秒针长度
+        var L1=width/2*17/20
+        cvs.lineTo(width/2+L1*Math.sin(deg2),height/2-L1*Math.cos(deg2))
+        cvs.closePath();
+        cvs.stroke();
+        cvs.restore();
+
+        //让分针动起来
+cvs.save()
+        cvs.beginPath();
+        cvs.moveTo(width/2,height/2);
+        cvs.strokeStyle="green"
+        cvs.lineWidth=12;
+        var L2=width/2*14/20;
+        var  deg3=minute/60*2*Math.PI+6*Math.PI/180*second/60
+        cvs.lineTo(width/2+L2*Math.sin(deg3),height/2-L2*Math.cos(deg3))
+        cvs.closePath()
+        cvs.stroke();
+cvs.restore();
+        //让时针动起来,秒针走一圈分针走6度,分针走一圈,时针走30度.
+        cvs.save()
+        cvs.beginPath()
+        cvs.moveTo(width/2,height/2);
+        cvs.strokeStyle="purple"
+        cvs.lineWidth=20;
+        var deg4=(hour-12)/12*2*Math.PI+30*Math.PI/180*minute/60
+        var L3=width/2*11/20
+        cvs.lineTo(width/2+L3*Math.sin(deg4),height/2-L3*Math.cos(deg4))
+        cvs.closePath()
+        cvs.stroke();
+        cvs.restore()
+        //为时钟添加花朵装饰
+        //传参时不需要声明
+        var N, L, l, x,y;
+        function flower(cvs,N,x,y,L,l,color){
+            cvs.save();
+            cvs.beginPath()
+            //开始点坐标
+            cvs.moveTo(x,y-l);
+            var angel=2*Math.PI/N;
+            cvs.strokeStyle=color;
+
+            for(var i=0;i<N;i++){
+                //计算控制点坐标x
+                var X1=x+L*Math.sin(i*angel);
+                var Y1=y-L*Math.cos(i*angel)
+                var X2=x+L*Math.sin((i+1)*angel);
+                var Y2=y-L*Math.cos((i+1)*angel);
+                //计算结束点的坐标
+                var x1=x+l*Math.sin((i+1)*angel);
+                var y1=y-l*Math.cos((i+1)*angel);
+                cvs.bezierCurveTo(X1,Y1,X2,Y2,x1,y1);
+
+                cvs.stroke();
+            }
+            cvs.closePath();
+            cvs.restore();
+        }
+        flower(cvs,6,250,250,100,0,"red");
+        flower(cvs,8,250,250,150,60,"blue");
+        flower(cvs,10,250,250,250,60,"yellow");
+        flower(cvs,14,250,250,200,80,"green");
+
+     //给时钟绘制数字
+            var digit=["12","1","2","3","4","5","6","7","8","9","10","11"];
+    var L4=width/2*4/5;
+                cvs.save();
+    for(var k=0;k<12;k++){
+        cvs.fillStyle="black";
+        cvs.textAlign="center";
+        cvs.textBaseline="middle";
+        cvs.font="italic 15px Consolas"
+        cvs.fillText(digit[k],width/2+L4*Math.sin(k*2*Math.PI/12),height/2-L4*Math.cos(k*2*Math.PI/12))
+
+    }
+                cvs.restore()     }
+
+     ,1000)
+   /* cvs.beginPath();
+
+
+    //时针
+    setInterval(function(){
+
+    },1000)
+    cvs.moveTo(width/2,height/2);
+    cvs.lineWidth=20;
+    cvs.lineTo(width/2,height/2-width/2*11/20)
+    cvs.closePath()
+    cvs.stroke();
+    //分针
+    setInterval(function(){
+
+    },1000)
+    cvs.beginPath();
+    cvs.moveTo(width/2,height/2);
+    cvs.lineWidth=12;
+    cvs.lineTo(width/2,height/2-width/2*14/20)
+    cvs.closePath()
+    cvs.stroke();
+    */
+
+
+</script>
+</body>
+</html>
